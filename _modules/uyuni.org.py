@@ -18,7 +18,8 @@ def __virtual__():
 def check_present(id, first_username, first_password):
     try:
         key = client.auth.login(first_username, first_password)
-        if client.org.getDetails(key, id) is not None
+        if ('org_admin' in client.user.listRoles(key, first_username)
+            and id == client.user.getDetails(key, first_username)['org_name']):
             return 'present'
     except:
         log.debug('Unable to connect user or org do not exists')
@@ -30,4 +31,4 @@ def present(id, name, email, first_username, first_password):
     return client.org.create(
         key,
         id, first_username, first_password,
-        "Sr.", first_username, "", email, False)
+        "Sr.", first_username, first_username, email, False)
