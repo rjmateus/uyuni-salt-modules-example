@@ -13,7 +13,7 @@ def __virtual__():
     '''
     Only Runs in suse manager server
     '''
-    return  return  __virtualname__ if 'suse_manager_server' in __grains__['role'] else False
+    return  __virtualname__ if 'suse_manager_server' in __grains__['role'] else False
 
 def check_present(org_name, first_username, first_password):
     # check if username and password are correct
@@ -26,6 +26,9 @@ def check_present(org_name, first_username, first_password):
             return 'present'
     except:
         log.debug('Unable to connect user or org do not exists')
+    finally:
+        if(key is not None):
+            client.auth.logout(key)
     return 'absent'
 
 def present(org_name,
@@ -48,7 +51,10 @@ def present(org_name,
     # For now, if API returns an error or exception it's propagate
     # I didn't add  support for PamAuth
     key = client.auth.login(__grains__['server_username'], __grains__['server_password'])
-    return client.org.create(
+    new_user = client.org.create(
         key,
         org_name, first_username, first_password,
         prefix, firstName, lastName, user_email, False)
+
+    client.auth.logout(key)
+    return new_user
