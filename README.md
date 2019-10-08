@@ -30,9 +30,23 @@ test:
 # Modules
 ## 'uyuni_org'
 
-### check_present ()
+### check_present (org_name, first_username, first_password)
 Verify is organization is set up on the server with the correct user names
-example:
 
-### present
+example:
+```
+salt 'server-head.tf.local' uyuni_org.check_present SUSE admin admin
+```
+
+### present (org_name, first_username, first_password, user_email, prefix='Sr.', firstName = None,lastName = None)
 Creates a new organization with a new user to administer the organization
+
+example 1:
+```
+salt 'server-head.tf.local' uyuni_org.check_present Org org_admin org_admin org_admin@test.com
+```
+
+example 2:
+```
+salt 'server-head.tf.local' uyuni_org.check_present Org org_admin org_admin org_admin@test.com "Mr." foo bar
+```

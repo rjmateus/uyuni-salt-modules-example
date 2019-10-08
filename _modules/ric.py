@@ -1,3 +1,5 @@
+# this is just a test file to check how modules work.
+# nothing usefull...
 import logging
 
 log = logging.getLogger(__name__)
