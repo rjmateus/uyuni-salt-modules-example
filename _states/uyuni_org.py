@@ -15,7 +15,6 @@ def __virtual__():
     return  'suse_manager_server' in __grains__['role'] and __virtualname__ or False
 
 def present(name,
-            org_name,
             first_username,
             first_password,
             user_email,
@@ -34,7 +33,7 @@ def present(name,
            'result': None,
            'comment': ''}
 
-    current_state = __salt__['uyuni_org.check_present'](org_name, first_username, first_password)
+    current_state = __salt__['uyuni_org.check_present'](name, first_username, first_password)
 
     if current_state == 'present':
         ret['result'] = True
@@ -49,11 +48,11 @@ def present(name,
         }
         return ret
 
-    __salt__['uyuni_org.present'](org_name,
+    __salt__['uyuni_org.present'](name,
                 first_username, first_password, user_email,
                 prefix, firstName, lastName)
 
-    new_state = __salt__['uyuni_org.check_present'](org_name, first_username, first_password)
+    new_state = __salt__['uyuni_org.check_present'](name, first_username, first_password)
 
     ret['changes'] = {
         'old': current_state,
