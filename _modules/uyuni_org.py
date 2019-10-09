@@ -19,6 +19,7 @@ def check_present(org_name, first_username, first_password):
     # check if username and password are correct
     # user has organization admin role
     # and is part of 'org_name'
+    key = None
     try:
         key = client.auth.login(first_username, first_password)
         if ('org_admin' in client.user.listRoles(key, first_username)

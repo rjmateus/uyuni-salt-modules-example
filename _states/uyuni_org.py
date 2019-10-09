@@ -57,7 +57,7 @@ def present(name,
 
     ret['changes'] = {
         'old': current_state,
-        'new': new_state,
+        'new': new_state
     }
 
     if new_state != 'present':

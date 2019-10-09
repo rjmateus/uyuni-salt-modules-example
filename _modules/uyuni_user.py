@@ -23,8 +23,9 @@ def check_present(name,
                 email = ' ',
                 org_admin=False):
 
-    key = client.auth.login(name, password)
+    key = None
     try:
+        key = client.auth.login(name, password)
         userDetails = client.user.getDetails(key, name)
         #$ check user information
         if(userDetails['first_name'] != first_name
