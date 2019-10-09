@@ -1,16 +1,13 @@
-# this is just a test file to check how modules work.
+# this is just a test file to check how modules work and have a litle fun...
 # nothing usefull...
 import logging
 
 log = logging.getLogger(__name__)
 
-__virtualname__ = 'ric'
+__virtualname__ = 'who_is'
 
 
 def __virtual__():
-    '''
-    Only Runs in suse manager server
-    '''
     return __virtualname__
 
 def theMan(name):
