@@ -33,7 +33,7 @@ def present(name,
            'result': None,
            'comment': ''}
 
-    current_state = __salt__['uyuni_org.check_present'](name, first_username, first_password)
+    current_state = __salt__['uyuni_org.check_exists'](name, first_username, first_password)
 
     if current_state == 'present':
         ret['result'] = True
@@ -48,11 +48,11 @@ def present(name,
         }
         return ret
 
-    __salt__['uyuni_org.present'](name,
+    __salt__['uyuni_org.create_or_update'](name,
                 first_username, first_password, user_email,
                 prefix, firstName, lastName)
 
-    new_state = __salt__['uyuni_org.check_present'](name, first_username, first_password)
+    new_state = __salt__['uyuni_org.check_exists'](name, first_username, first_password)
 
     ret['changes'] = {
         'old': current_state,

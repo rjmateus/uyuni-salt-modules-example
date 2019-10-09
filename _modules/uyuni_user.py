@@ -15,7 +15,7 @@ def __virtual__():
     '''
     return  __virtualname__ if 'suse_manager_server' in __grains__['role'] else False
 
-def check_present(name,
+def check_exists(name,
                 password,
                 org,
                 first_name = None,
@@ -45,7 +45,7 @@ def check_present(name,
             client.auth.logout(key)
     return 'absent'
 
-def present(name,
+def create_or_update(name,
             password,
             org,
             org_admin_username,

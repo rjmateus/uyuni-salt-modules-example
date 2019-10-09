@@ -8,7 +8,7 @@ manager server organizations and suse_manager_server
 
 Module can only be applied in minions with the role 'suse_manager_server'.
 
-### check_present (org_name, first_username, first_password)
+### check_exists (org_name, first_username, first_password)
 Verify if organization is set up on the server with the correct admin user.
 
 
@@ -17,7 +17,7 @@ example:
 salt '*' uyuni_org.check_present SUSE admin admin
 ```
 
-### present (org_name, first_username, first_password, user_email, prefix='Sr.', firstName = None,lastName = None)
+### create_or_update (org_name, first_username, first_password, user_email, prefix='Sr.', firstName = None,lastName = None)
 Creates a new organization with a user as administer of the organization
 
 example 1:
@@ -34,7 +34,7 @@ salt '*' uyuni_org.check_present Org org_admin org_admin org_admin@test.com "Mr.
 
 Module can only be applied in minions with the role 'suse_manager_server'.
 
-### check_present (name, password, org, first_name = None, last_name = None, email = ' ',org_admin=False)
+### check_exists (name, password, org, first_name = None, last_name = None, email = ' ',org_admin=False)
 Verify is user existis in the server with the correct organization and detail information
 
 example:
@@ -42,7 +42,7 @@ example:
 salt '*' uyuni_user.check_present user password SUSE firstName lastName email@email.com False
 ```
 
-### present (name, password, org, org_admin_username, org_admin_password, first_name = None, last_name = None, email=' ', org_admin=False)
+### create_or_update (name, password, org, org_admin_username, org_admin_password, first_name = None, last_name = None, email=' ', org_admin=False)
 Creates a new user in the server for the given organization.
 
 example:
