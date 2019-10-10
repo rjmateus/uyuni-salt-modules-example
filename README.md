@@ -1,4 +1,4 @@
-# SUMA salt modules and states for orgs and user
+# UYUNI salt modules and states for orgs and user
 
 This project has a set of salt modules and states to easily manage suse
 manager server organizations and suse_manager_server
